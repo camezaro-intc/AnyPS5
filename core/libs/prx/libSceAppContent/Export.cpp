@@ -328,8 +328,10 @@ int APS5_VABI sceAppContentDownload2Shrink(size_t size) {
 }
 
 APS5_EXPORT("SWVxsi-ZBlw", sceAppContentUnknown_SWVxsi_ZBlw);
-int APS5_VABI sceAppContentUnknown_SWVxsi_ZBlw(void) {
-    NotImplemented_nid_no_patch(__func__);
+int APS5_VABI sceAppContentUnknown_SWVxsi_ZBlw(const void* mdid, bool* matches) {
+    if (!initialized.load()) return SCE_APP_CONTENT_ERROR_NOT_INITIALIZED;
+    if (!mdid || !matches) return SCE_APP_CONTENT_ERROR_PARAMETER;
+    *matches = true;
     return 0;
 }
 
