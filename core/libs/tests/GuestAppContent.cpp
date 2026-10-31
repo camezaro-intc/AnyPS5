@@ -119,6 +119,9 @@ int main() {
     Require(sceAppContentDownloadDataFormat(&download2Mount) == 0);
     Require(std::filesystem::is_directory(download2Data) && std::filesystem::is_empty(download2Data));
     Require(std::filesystem::exists(downloadData / "preserve.bin"));
+    availableKb = 12345;
+    Require(sceAppContentDownloadDataGetAvailableSpaceKb(&download2Mount, &availableKb) == 0);
+    Require(availableKb == 0);
     Require(sceAppContentDownload0Expand(1024) == 0);
     Require(sceAppContentDownload0Shrink(512) == 0);
     Require(sceAppContentDownload1Expand(2048) == 0);
